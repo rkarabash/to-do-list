@@ -1,5 +1,6 @@
 package ru.school57.todolist.service
 
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Component
 import ru.school57.todolist.dto.RegisterUserRequest
 import ru.school57.todolist.dto.LoginUserRequest
@@ -16,6 +17,7 @@ class AuthService(
     private val userRepository: UserRepository,
     private val tokenRepository: TokenRepository
 ) {
+    @Transactional
     fun registerUser(request: RegisterUserRequest): String {
         val user = userRepository.findByEmail(request.email)
         if (user != null) throw BadRequestException("Пользователь уже зарегистрирован")
@@ -29,6 +31,7 @@ class AuthService(
         return "Пользователь успешно зарегистрирован"
     }
 
+    @Transactional
     fun loginUser(request: LoginUserRequest): String {
         val user = userRepository.findByEmail(request.email)
         if (user == null) {
