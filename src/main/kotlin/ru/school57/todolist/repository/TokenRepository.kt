@@ -6,4 +6,6 @@ import ru.school57.todolist.entity.User
 
 interface TokenRepository: JpaRepository<Token, Long> {
     fun findByUser(user: User): List<Token>
+
+    fun findByValue(value: String): Token?
 }
