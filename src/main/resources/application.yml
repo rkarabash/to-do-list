@@ -6,7 +6,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/my_db # сюда нужно вписать url для вашей базы
     username: admin
     password: admin
-    jpa:
-      show-sql: true
-      hibernate:
-        ddl-auto: update
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

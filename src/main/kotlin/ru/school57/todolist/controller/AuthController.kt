@@ -4,7 +4,9 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import ru.school57.todolist.RegisterUserRequest
+import ru.school57.todolist.dto.LoginResponce
+import ru.school57.todolist.dto.RegisterUserRequest
+import ru.school57.todolist.dto.LoginUserRequest
 import ru.school57.todolist.dto.ServiceResponse
 import ru.school57.todolist.service.AuthService
 
@@ -16,4 +18,7 @@ class AuthController(
     @PostMapping("/register")
     fun registerUser(@RequestBody request: RegisterUserRequest) =
         ServiceResponse(authService.registerUser(request))
+
+    @PostMapping("/login")
+    fun loginUser(@RequestBody request: LoginUserRequest) = LoginResponce(authService.loginUser(request))
 }
