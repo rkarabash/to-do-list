@@ -13,7 +13,7 @@ data class Token(
     @Column(nullable = false, unique = true)
     val value: String,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
