@@ -80,8 +80,49 @@ erDiagram
         boolean revoked
     }
 ```
+# DDL
+```sql
+CREATE TABLE users
+(
+    id       BIGSERIAL PRIMARY KEY,
+    email    VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    username VARCHAR(255)
+);
+
+CREATE TABLE tasks
+(
+    id          BIGSERIAL PRIMARY KEY,
+    user_id     BIGINT       NOT NULL REFERENCES users,
+    title       VARCHAR(255) NOT NULL,
+    description VARCHAR(1000),
+    is_done     BOOLEAN DEFAULT FALSE,
+    due_date    TIMESTAMP,
+    created_at  TIMESTAMP    NOT NULL,
+    updated_at  TIMESTAMP    NOT NULL,
+    priority    INT     DEFAULT 0
+);
+
+CREATE TABLE tokens
+(
+    id         BIGSERIAL PRIMARY KEY,
+    value      VARCHAR(255) NOT NULL UNIQUE,
+    user_id    BIGINT       NOT NULL REFERENCES users,
+    expires_at TIMESTAMP,
+    revoked    BOOLEAN DEFAULT FALSE
+);
+```
 
 # Команда для поднятия БД
 ```shell
 docker run --name my_postgres -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=my_db -d postgres:16
 ```
+
+# Команда для актуализации мастер-ветки
+```shell
+git fetch
+git merge origin/master master
+```
+
+# Swagger
+[Ссылка на Swagger](http://localhost:8080/swagger-ui/index.html)
