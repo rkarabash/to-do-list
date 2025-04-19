@@ -8,6 +8,7 @@ import ru.school57.todolist.dto.LoginResponce
 import ru.school57.todolist.dto.RegisterUserRequest
 import ru.school57.todolist.dto.LoginUserRequest
 import ru.school57.todolist.dto.ServiceResponse
+import ru.school57.todolist.exception.UnAuthorisedException
 import ru.school57.todolist.service.AuthService
 
 @RestController
@@ -20,5 +21,6 @@ class AuthController(
         ServiceResponse(authService.registerUser(request))
 
     @PostMapping("/login")
+    @Throws(UnAuthorisedException::class)
     fun loginUser(@RequestBody request: LoginUserRequest) = LoginResponce(authService.loginUser(request))
 }

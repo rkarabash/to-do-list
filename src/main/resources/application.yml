@@ -1,7 +1,7 @@
 spring:
-#  output:
-#    ansi:
-#      enabled: ALWAYS
+  output:
+    ansi:
+      enabled: ALWAYS
   application:
     name: todolist
   datasource:
@@ -10,9 +10,9 @@ spring:
     username: admin
     password: admin
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
 
 logging:
-  config: classpath:logback-default.xml
+  config: classpath:logback-colored.xml
