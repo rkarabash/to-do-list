@@ -1,4 +1,7 @@
 spring:
+#  output:
+#    ansi:
+#      enabled: ALWAYS
   application:
     name: todolist
   datasource:
@@ -10,3 +13,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+logging:
+  config: classpath:logback-default.xml
