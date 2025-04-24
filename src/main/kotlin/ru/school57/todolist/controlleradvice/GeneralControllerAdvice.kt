@@ -22,7 +22,7 @@ class GeneralControllerAdvice {
 
     @ExceptionHandler(BadRequestException::class)
     fun badRequestExceptionHandler(exception: BadRequestException): ResponseEntity<ErrorResponse> {
-        logger.debug(exception.message ?: "BAD REQUEST")
+        logger.warn(exception.message ?: "BAD REQUEST")
         return ResponseEntity.status(400).body(ErrorResponse(exception.message ?: "BAD REQUEST"))
     }
 
